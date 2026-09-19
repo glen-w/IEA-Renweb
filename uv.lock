@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.15'",
@@ -306,6 +306,46 @@ sdist = { url = "https://files.pythonhosted.org/packages/d3/38/af70d7ab1ae9d4da4
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c1/8b/5fe2cc11fee489817272089c4203e679c63b570a5aaeb18d852ae3cbba6a/et_xmlfile-2.0.0-py3-none-any.whl", hash = "sha256:7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa", size = 18059, upload-time = "2024-10-25T17:25:39.051Z" },
 ]
+
+[[package]]
+name = "iea-renweb"
+version = "1.0.0"
+source = { editable = "." }
+dependencies = [
+    { name = "duckdb" },
+    { name = "pyarrow" },
+    { name = "pydantic" },
+    { name = "rich" },
+    { name = "typer" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "black" },
+    { name = "mypy" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "ruff" },
+]
+xlsx = [
+    { name = "openpyxl" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "black", marker = "extra == 'dev'", specifier = ">=24.10" },
+    { name = "duckdb", specifier = ">=1.1.0" },
+    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.11" },
+    { name = "openpyxl", marker = "extra == 'xlsx'", specifier = ">=3.1.0" },
+    { name = "pyarrow", specifier = ">=16.0.0" },
+    { name = "pydantic", specifier = ">=2.0.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0" },
+    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=5.0" },
+    { name = "rich", specifier = ">=13.0.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.8" },
+    { name = "typer", specifier = ">=0.12.0" },
+]
+provides-extras = ["xlsx", "dev"]
 
 [[package]]
 name = "iniconfig"
@@ -802,46 +842,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/39/2a/cbbf9250020a4a8dd53ba83a46c097b69e5eb49dd14e708f496f548c6612/pytokens-0.4.1-cp314-cp314t-win_amd64.whl", hash = "sha256:584c80c24b078eec1e227079d56dc22ff755e0ba8654d8383b2c549107528918", size = 116287, upload-time = "2026-01-30T01:03:30.912Z" },
     { url = "https://files.pythonhosted.org/packages/c6/78/397db326746f0a342855b81216ae1f0a32965deccfd7c830a2dbc66d2483/pytokens-0.4.1-py3-none-any.whl", hash = "sha256:26cef14744a8385f35d0e095dc8b3a7583f6c953c2e3d269c7f82484bf5ad2de", size = 13729, upload-time = "2026-01-30T01:03:45.029Z" },
 ]
-
-[[package]]
-name = "iea-renweb"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "duckdb" },
-    { name = "pyarrow" },
-    { name = "pydantic" },
-    { name = "rich" },
-    { name = "typer" },
-]
-
-[package.optional-dependencies]
-dev = [
-    { name = "black" },
-    { name = "mypy" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "ruff" },
-]
-xlsx = [
-    { name = "openpyxl" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "black", marker = "extra == 'dev'", specifier = ">=24.10" },
-    { name = "duckdb", specifier = ">=1.1.0" },
-    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.11" },
-    { name = "openpyxl", marker = "extra == 'xlsx'", specifier = ">=3.1.0" },
-    { name = "pyarrow", specifier = ">=16.0.0" },
-    { name = "pydantic", specifier = ">=2.0.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=5.0" },
-    { name = "rich", specifier = ">=13.0.0" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.8" },
-    { name = "typer", specifier = ">=0.12.0" },
-]
-provides-extras = ["xlsx", "dev"]
 
 [[package]]
 name = "rich"

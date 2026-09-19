@@ -1,8 +1,26 @@
 # IEA-Renweb
 
+[![test](https://github.com/glen-w/IEA-Renweb/actions/workflows/test.yml/badge.svg)](https://github.com/glen-w/IEA-Renweb/actions/workflows/test.yml)
+
 Tools for turning an IEA World Energy Balances extract into renewable energy statistics. It loads the bulk fixed-width file or the SDMX CSV into DuckDB, checks units, and calculates total final energy consumption, renewable and fossil shares, and the power, heat, transport, buildings, industry, and agriculture splits.
 
-This is a library and a command line tool. There is no web application.
+## What this is
+
+A Python library and CLI tool that:
+- Loads IEA World Energy Balances (extended balances, bulk TXT or SDMX CSV)
+- Validates units and converts to terajoules
+- Computes renewable/fossil/nuclear energy shares and sector-level splits
+- Exports results to CSV, Parquet, or Excel
+
+## What this is not
+
+This release **does not include**:
+- The IEA data itself (it is a licensed product, not open data)
+- Population, GDP, or capacity statistics
+- Policy or target data
+- A web application or visualization UI
+
+The scope is: IEA balances in → renewable shares and sector splits out. See [docs/METHODOLOGY.md](docs/METHODOLOGY.md) for formulas and assumptions.
 
 ## The IEA extract is yours
 
@@ -19,12 +37,21 @@ Summary balances, the indicators file, conversion factors, and Beyond 2020 / IVT
 
 The two editions this tool does read use different code lists. Ingest maps the older codes onto the current ones.
 
-## Install
+## Install and first run
 
 Python 3.11 or newer, and [uv](https://docs.astral.sh/uv/).
 
 ```bash
+# Install dependencies
 uv sync
+
+# Set warehouse path (or accept default ~/Documents/renweb_data/renweb.duckdb)
+export RENWEB_DATA=~/path/to/warehouse.duckdb
+
+# Point to your IEA extract and run
+uv run renweb ingest /path/to/WBIG1.zip
+uv run renweb compute --country FRA --year 2022
+uv run renweb export ./output --format csv
 ```
 
 The warehouse is a DuckDB file outside the git tree. The default path is `~/Documents/renweb_data/renweb.duckdb`. Set `RENWEB_DATA` to a `.duckdb` file or to a directory if you want it somewhere else.

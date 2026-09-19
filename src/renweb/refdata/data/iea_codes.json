@@ -1,0 +1,10 @@
+[
+  {"iea_code": "FRANCE", "iso3_code": "FRA"},
+  {"iea_code": "WORLD", "iso3_code": "WLD"},
+  {"iea_code": "AUSTRALIA", "iso3_code": "AUS"},
+  {"iea_code": "AUSTRALI", "iso3_code": "AUS"},
+  {"iea_code": "EU27_2020", "iso3_code": "EU27_2020"},
+  {"iea_code": "EU27", "iso3_code": "EU27_2020"},
+  {"iea_code": "NGA", "iso3_code": "NGA"},
+  {"iea_code": "NIGERIA", "iso3_code": "NGA"}
+]

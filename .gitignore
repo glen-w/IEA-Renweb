@@ -12,7 +12,7 @@ build/
 *.egg-info/
 
 .env
-data/
+/data/
 contrib/
 
 *.duckdb

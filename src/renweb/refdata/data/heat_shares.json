@@ -1,0 +1,5 @@
+[
+  {"area": "World", "sector": "industry", "year": 2020, "share": 0.04, "type": "real"},
+  {"area": "World", "sector": "buildings", "year": 2020, "share": 0.11, "type": "real"},
+  {"area": "World", "sector": "agriculture", "year": 2020, "share": 0.04, "type": "real"}
+]
