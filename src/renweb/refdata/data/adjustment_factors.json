@@ -1,0 +1,10 @@
+{
+  "hydropower": 0.99,
+  "geothermal": 0.94,
+  "solar_pv": 1.0,
+  "csp": 0.94,
+  "ocean": 1.0,
+  "wind": 1.0,
+  "biopower": 0.93,
+  "nuclear": 0.94
+}

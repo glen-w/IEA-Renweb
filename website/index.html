@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IEA-Renweb — renewable energy statistics from World Energy Balances</title>
+    <meta
+      name="description"
+      content="IEA-Renweb loads an IEA World Energy Balances extract into DuckDB and calculates renewable energy statistics. The balances are not included. Not a hosted service."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="stylesheet" href="chrome/site_chrome.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      defer
+      src="https://analytics.glenwright.earth/script.js"
+      data-website-id="bc0796c1-554a-4bc4-b2ea-99f3adda3987"
+    ></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header rw-site-chrome">
+      <div class="wrap header-inner">
+        <a class="brand" href="./">
+          <img class="brand-logo" src="logo.png" alt="" width="28" height="28" />
+          IEA-Renweb
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-nav-toggle
+        >
+          Menu
+        </button>
+        <nav id="site-nav" class="site-nav" data-nav>
+          <a href="#product">See how it works</a>
+          <a href="#install">Install</a>
+          <a href="https://github.com/glen-w/IEA-Renweb">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-atmosphere" aria-hidden="true"></div>
+        <div class="wrap hero-copy">
+          <p class="brand-mark">
+            <img src="logo.png" alt="" width="64" height="64" />
+            IEA-Renweb
+          </p>
+          <h1>Renewable energy statistics from World Energy Balances.</h1>
+          <p class="lede">
+            Load an IEA extract into DuckDB, check the units, and calculate
+            renewable and fossil shares. The balances stay yours. This is a
+            library and a command line tool, not a hosted application.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#product">See how it works</a>
+            <a class="btn ghost" href="#install">Install</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="product">
+        <div class="wrap">
+          <h2>From an extract to shares</h2>
+          <p class="section-lead">
+            Two distributions of the extended World Energy Balances table.
+            Ingest maps the older codes onto the current list.
+          </p>
+          <div class="feature-grid">
+            <div class="feature">
+              <h3>Ingest</h3>
+              <p>
+                The fixed-width bulk file (<code>WORLDBIG*.TXT</code>, often
+                in <code>WBIG*.zip</code>) or the long SDMX / OECD iLibrary
+                CSV. Loading the same bytes twice is a no-op.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Compute</h3>
+              <p>
+                Total final energy consumption, renewable and fossil shares,
+                and the power, heat, transport, buildings, industry, and
+                agriculture splits. Shares are fractions. Energy is
+                terajoules.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Unit check</h3>
+              <p>
+                Rows whose ktoe and TJ columns disagree, and which are not
+                the electricity-output case, are marked suspect and left out
+                of the calculations.
+              </p>
+            </div>
+            <div class="feature">
+              <h3>Optional extras</h3>
+              <p>
+                World Bank population, GDP, and income, and IRENASTAT
+                capacity. They add variables. They do not change the IEA
+                identities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section muted" id="what">
+        <div class="wrap narrow">
+          <h2>What can I do with it?</h2>
+          <ul class="outcomes">
+            <li>Load a World Energy Balances extract you already have</li>
+            <li>Compute one country-year, or every country-year in the warehouse</li>
+            <li>Validate the results and export parquet or CSV</li>
+            <li>Look at the warehouse in a local marimo notebook</li>
+          </ul>
+          <p>
+            Formulas and the unit check:
+            <a
+              href="https://github.com/glen-w/IEA-Renweb/blob/main/docs/METHODOLOGY.md"
+              >methodology</a
+            >.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="privacy">
+        <div class="wrap narrow">
+          <h2>The extract stays yours</h2>
+          <p>
+            World Energy Balances is a paid IEA product. This repository is
+            the toolset only. Do not add the balances. The warehouse is a
+            DuckDB file outside the git tree, by default
+            <code>~/Documents/renweb_data/renweb.duckdb</code>. The notebook
+            has no password and writes nothing: keep it on
+            <code>127.0.0.1</code> and stop it before ingest or compute.
+          </p>
+        </div>
+      </section>
+
+      <section class="section muted" id="install">
+        <div class="wrap narrow">
+          <h2>Install</h2>
+          <p>
+            Python 3.11 or newer, and
+            <a href="https://docs.astral.sh/uv/">uv</a>. Point the commands
+            at the files you downloaded.
+          </p>
+          <pre class="code"><code>uv sync
+uv run renweb ingest /path/to/WBIG1.zip
+uv run renweb compute --country FRA --year 2022</code></pre>
+          <p class="fine">
+            Optional extras: <code>worldbank</code>, <code>irena</code>,
+            <code>notebook</code>, <code>xlsx</code>.
+            Details:
+            <a href="https://github.com/glen-w/IEA-Renweb">GitHub</a>
+            ·
+            <a
+              href="https://github.com/glen-w/IEA-Renweb/blob/main/README.md"
+              >README</a
+            >
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p>© IEA-Renweb contributors. Version 1.0.0.</p>
+        <p>
+          <a href="https://github.com/glen-w/IEA-Renweb">GitHub</a>
+          ·
+          <a
+            href="https://ko-fi.com/C0C1XK8G"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><img
+              height="36"
+              style="border: 0; height: 36px"
+              src="https://storage.ko-fi.com/cdn/kofi6.png?v=6"
+              alt="Buy Me a Coffee at ko-fi.com"
+          /></a>
+        </p>
+      </div>
+    </footer>
+    <script src="chrome/site_nav.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+[
+  {
+    "from_unit": "GWh",
+    "to_unit": "TJ",
+    "factor": 3.6
+  },
+  {
+    "from_unit": "TJ",
+    "to_unit": "EJ",
+    "factor": 1000000.0
+  },
+  {
+    "from_unit": "MWh",
+    "to_unit": "TJ",
+    "factor": 0.0036
+  },
+  {
+    "from_unit": "kWh",
+    "to_unit": "TJ",
+    "factor": 3.6e-06
+  },
+  {
+    "from_unit": "PJ",
+    "to_unit": "TJ",
+    "factor": 1000.0
+  },
+  {
+    "from_unit": "TJ",
+    "to_unit": "PJ",
+    "factor": 0.001
+  }
+]

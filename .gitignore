@@ -1,0 +1,30 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+.env
+# User extracts at the repo root. Do not ignore src/renweb/refdata/data/.
+/data/
+
+*.duckdb
+*.duckdb.wal
+*.parquet
+
+# Marimo session cache next to the notebook.
+notebooks/__marimo__/
+
+.DS_Store
+
+.cursor/commands/
+
+# Working notes. Not part of the package.
+/notes/

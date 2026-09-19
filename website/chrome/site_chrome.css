@@ -1,0 +1,102 @@
+/* Sticky header for the marketing landing. */
+.rw-site-chrome {
+  --rw-ink: #101820;
+  --rw-ink-soft: #3d4a55;
+  --rw-paper: #f3f5f0;
+  --rw-accent: #2c6b45;
+  --rw-line: rgba(16, 24, 32, 0.12);
+  --rw-font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --rw-font-body: "Source Sans 3", "Segoe UI", sans-serif;
+  --rw-header-height: 3.5rem;
+
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  backdrop-filter: blur(10px);
+  background: rgba(243, 245, 240, 0.92);
+  border-bottom: 1px solid var(--rw-line);
+  font-family: var(--rw-font-body);
+  color: var(--rw-ink);
+}
+
+.rw-site-chrome .wrap {
+  width: min(1080px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.rw-site-chrome .header-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--rw-header-height);
+}
+
+.rw-site-chrome .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--rw-font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: var(--rw-ink);
+  letter-spacing: -0.02em;
+}
+
+.rw-site-chrome .brand-logo {
+  width: 1.7rem;
+  height: 1.7rem;
+  display: block;
+  flex: none;
+}
+
+.rw-site-chrome .nav-toggle {
+  display: none;
+  border: 1px solid var(--rw-line);
+  background: transparent;
+  color: var(--rw-ink);
+  padding: 0.4rem 0.7rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.rw-site-chrome .site-nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.rw-site-chrome .site-nav a {
+  text-decoration: none;
+  color: var(--rw-ink-soft);
+  font-weight: 600;
+}
+
+.rw-site-chrome .site-nav a:hover,
+.rw-site-chrome .site-nav a:focus-visible {
+  color: var(--rw-accent);
+}
+
+@media (max-width: 720px) {
+  .rw-site-chrome .nav-toggle {
+    display: inline-flex;
+  }
+
+  .rw-site-chrome .site-nav {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(var(--rw-header-height) - 0.1rem);
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    background: var(--rw-paper);
+    border: 1px solid var(--rw-line);
+    border-radius: 0.4rem;
+  }
+
+  .rw-site-chrome .site-nav.open {
+    display: flex;
+  }
+}
