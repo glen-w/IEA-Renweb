@@ -1,0 +1,77 @@
+[project]
+name = "iea-renweb"
+version = "0.1.0"
+description = "Tools for turning IEA World Energy Balances into renewable energy statistics."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Glen" }]
+requires-python = ">=3.11"
+keywords = ["energy", "iea", "renewables", "statistics", "balances"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "duckdb>=1.1.0",
+    "pyarrow>=16.0.0",
+    "typer>=0.12.0",
+    "rich>=13.0.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+xlsx = ["openpyxl>=3.1.0"]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.8",
+    "black>=24.10",
+    "mypy>=1.11",
+]
+
+[project.urls]
+Repository = "https://github.com/glen-w/IEA-Renweb"
+
+[project.scripts]
+renweb = "renweb.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/renweb"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W"]
+ignore = ["E501", "B008"]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+mypy_path = "src"
+packages = ["renweb"]
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+no_implicit_optional = true
+
+[[tool.mypy.overrides]]
+module = ["duckdb", "duckdb.*", "pyarrow", "pyarrow.*", "rich", "rich.*", "openpyxl", "openpyxl.*"]
+ignore_missing_imports = true
