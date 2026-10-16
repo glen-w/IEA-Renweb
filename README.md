@@ -4,9 +4,17 @@ Tools for turning an IEA World Energy Balances extract into renewable energy sta
 
 This is a library and a command line tool. There is no hosted web application; an optional local [marimo](https://marimo.io) notebook for a quick look at the warehouse is in `notebooks/`.
 
-Hosted landing: [glenwright.earth/IEA-Renweb](https://glenwright.earth/IEA-Renweb/) ([`website/`](website/)).
+## Install
 
-## The IEA extract is yours
+Python 3.11 or newer, and [uv](https://docs.astral.sh/uv/).
+
+```bash
+uv sync
+```
+
+The warehouse is a DuckDB file outside the git tree. The default path is `~/Documents/renweb_data/renweb.duckdb`. Set `RENWEB_DATA` to a `.duckdb` file or to a directory if you want it somewhere else.
+
+## Bring Your Own Data
 
 [World Energy Balances](https://www.iea.org/data-and-statistics/data-product/world-energy-balances) is a paid IEA data product. This repository is the toolset only. The balances are not included, and they must not be added: the licence is the IEA's Terms of Use for Non-CC Material, not an open licence. A shared application or a model that redistributes derived data needs a separate agreement. Buy or subscribe on the product page, then point the commands below at the files you downloaded.
 
@@ -20,16 +28,6 @@ This tool reads two distributions of that extended table:
 Summary balances, the indicators file, conversion factors, and Beyond 2020 / IVT files are part of the product and are not read. The wide CSV with one column per year is the input for [IEATools](https://github.com/MatthewHeun/IEATools), not for this package. A comparison with the other open-source readers is in [docs/RELATED.md](docs/RELATED.md).
 
 The two editions this tool does read use different code lists. Ingest maps the older codes onto the current ones.
-
-## Install
-
-Python 3.11 or newer, and [uv](https://docs.astral.sh/uv/).
-
-```bash
-uv sync
-```
-
-The warehouse is a DuckDB file outside the git tree. The default path is `~/Documents/renweb_data/renweb.duckdb`. Set `RENWEB_DATA` to a `.duckdb` file or to a directory if you want it somewhere else.
 
 ## Command line
 
