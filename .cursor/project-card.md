@@ -12,7 +12,7 @@ ui_entry: notebooks/quicklook.py
 sibling_ports:              # never inspect, bind, or kill
   - 8501                    # TranscriptX
   - 8510                    # Transcribe
-small_fixture: none yet — build with renweb.ingest.txt.format_fixed_width; do not use a live IEA extract
+small_fixture: examples/worldbalances_demo.zip — regenerate with examples/generate_demo_extract.py; synthetic only, not IEA data
 large_fixture_hint: a user-named IEA balances file (.txt, SDMX .csv, or .zip); do not fake size by duplicating a snippet; do not use ~/Documents/renweb_data unless asked
 default_test_cmd: python -m pytest tests/ -q
 coverage_cmd: python -m pytest tests/ -q --cov=src/renweb --cov-report=term-missing

@@ -14,6 +14,18 @@ uv sync
 
 The warehouse is a DuckDB file outside the git tree. The default path is `~/Documents/renweb_data/renweb.duckdb`. Set `RENWEB_DATA` to a `.duckdb` file or to a directory if you want it somewhere else.
 
+## Try it without IEA data
+
+A **synthetic** mini-extract ships in [`examples/worldbalances_demo.zip`](examples/worldbalances_demo.zip) (fictional countries plus Nigeria and France with fabricated values). See [`examples/README.md`](examples/README.md).
+
+```bash
+export RENWEB_DATA=/tmp/renweb_demo.duckdb
+uv run renweb ingest examples/worldbalances_demo.zip
+uv run renweb compute
+uv run renweb validate
+uv run pytest tests/test_example_balances.py -q
+```
+
 ## Bring Your Own Data
 
 [World Energy Balances](https://www.iea.org/data-and-statistics/data-product/world-energy-balances) is a paid IEA data product. This repository is the toolset only. The balances are not included, and they must not be added: the licence is the IEA's Terms of Use for Non-CC Material, not an open licence. A shared application or a model that redistributes derived data needs a separate agreement. Buy or subscribe on the product page, then point the commands below at the files you downloaded.
