@@ -32,13 +32,15 @@ backup_excludes:
   - "*.duckdb"
   - "*.duckdb.wal"
   - "*.parquet"
-backup_includes: []
+backup_includes:
+  - examples/
 verify_paths:
   - src/renweb
   - pyproject.toml
   - docs
   - LICENSE
   - .cursor/commands
+  - examples
 staging_prefix: renweb-backup
 high_leverage_tests:
   - fixed-width TXT and SDMX CSV ingest

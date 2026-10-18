@@ -73,7 +73,9 @@ def _lines_for_country_year(country: str, scale: float, year: int) -> list[str]:
         else:
             lines.append(format_fixed_width(country, product, year, flow, "TJ", tj))
             lines.append(
-                format_fixed_width(country, product, year, flow, "KTOE", tj / KTOE_TO_TJ)
+                format_fixed_width(
+                    country, product, year, flow, "KTOE", tj / KTOE_TO_TJ
+                )
             )
     return lines
 
@@ -91,5 +93,7 @@ def golden_nga_2022() -> dict[str, float]:
     pairs = {key: value * 6120.0 * drift for key, value in BASE_TJ.items()}
     return {
         name: value
-        for name, (value, _unit) in compute_one(Frame.from_pairs(pairs), "NGA", 2022).items()
+        for name, (value, _unit) in compute_one(
+            Frame.from_pairs(pairs), "NGA", 2022
+        ).items()
     }
